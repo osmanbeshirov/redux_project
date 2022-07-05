@@ -17,11 +17,12 @@ export default function Navi() {
                         reactstrap
                     </NavbarBrand>
                     <NavbarToggler onClick={function noRefCheck() { }} />
-                    <Collapse navbar>
+                    <Collapse navbar  style={{marginLeft: '50%'}}>
                         <Nav
                             className="me-auto"
                             navbar
                         >
+                            
                             <NavItem>
                                 <NavLink href="/components/">
                                     Components
@@ -32,7 +33,7 @@ export default function Navi() {
                                     GitHub
                                 </NavLink>
                             </NavItem>
-                            <UncontrolledDropdown
+                            <UncontrolledDropdown 
                                 inNavbar
                                 nav
                             >
