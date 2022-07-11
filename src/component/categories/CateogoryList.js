@@ -4,20 +4,14 @@ import { changeCategory } from '../../redux/actions/categoryActions';
 
 export default function CateogoryList() {
 
-
-
-
-
-
-  const currentCategory = useSelector(state => state.changeCategory.categoryName)
+  const currentCategory = useSelector(state => state.changeCategory)
 
   console.log(currentCategory)
 
-
   return (
     <div>
-
-      <h4>{currentCategory}</h4>
+     <h4></h4>
+      
     </div>
   )
 }
