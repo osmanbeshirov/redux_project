@@ -1,17 +1,33 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeCategory } from '../../redux/actions/categoryActions';
+import { changeCategory, getCategories } from '../../redux/actions/categoryActions';
 
 export default function CateogoryList() {
+  const dispatch = useDispatch();
 
-  const currentCategory = useSelector(state => state.changeCategory)
+  useEffect(() => {
+    dispatch(getCategories())
+  })
+
+
+
+  const currentCategory = useSelector(state => state.changeCategory);
+  const categories = useSelector(state => state.categoryList.categories)
+
+
 
   console.log(currentCategory)
+  console.log(categories)
 
   return (
     <div>
-     <h4></h4>
-      
+     
+      {/* <ul key={}>{categories.map(categogry => {
+        <li>{categogry.categoryName}</li>
+      })}
+
+      </ul> */}
+      <h4>Seçilən: {currentCategory.categoryName}</h4>
     </div>
   )
 }
