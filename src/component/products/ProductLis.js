@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Badge,Table,Button } from 'reactstrap'
+import { Badge, Table, Button } from 'reactstrap'
+import { addToCart } from '../../redux/actions/cartActions';
 import { changeCategory } from '../../redux/actions/categoryActions';
 import { getProducts } from '../../redux/actions/productActoins';
 
@@ -67,12 +68,11 @@ export default function ProductLis() {
                                 <td>
                                     {product.unitsInStock}
                                 </td>
-                                <td> <Button
+                                <td> <Button onClick={() => dispatch(addToCart(product))}
                                     color="primary"
                                 >
                                     Add to Basket
                                 </Button></td>
-
                             </tr>
 
                         ))

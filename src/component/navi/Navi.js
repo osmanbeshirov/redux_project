@@ -1,10 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
     Navbar, NavbarBrand, NavbarToggler, Collapse, Nav,
-    NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,NavLink
+    NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavLink
 } from 'reactstrap'
 
 export default function Navi() {
+
+    const productToCart = useSelector(state => state.cart);
+
     return (
         <div>
             <div>
@@ -17,12 +21,12 @@ export default function Navi() {
                         reactstrap
                     </NavbarBrand>
                     <NavbarToggler onClick={function noRefCheck() { }} />
-                    <Collapse navbar  style={{marginLeft: '50%'}}>
+                    <Collapse navbar style={{ marginLeft: '50%' }}>
                         <Nav
                             className="me-auto"
                             navbar
                         >
-                            
+
                             <NavItem>
                                 <NavLink href="/components/">
                                     Components
@@ -33,7 +37,7 @@ export default function Navi() {
                                     GitHub
                                 </NavLink>
                             </NavItem>
-                            <UncontrolledDropdown 
+                            <UncontrolledDropdown
                                 inNavbar
                                 nav
                             >
@@ -44,12 +48,11 @@ export default function Navi() {
                                     Options
                                 </DropdownToggle>
                                 <DropdownMenu end>
-                                    <DropdownItem>
-                                        Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                    </DropdownItem>
+                                    {productToCart.map(product => (
+                                        <DropdownItem key={product.id}>
+                                            {product.productName}
+                                        </DropdownItem>
+                                    ))}
                                     <DropdownItem divider />
                                     <DropdownItem>
                                         Reset
