@@ -9,6 +9,8 @@ export default function Navi() {
 
     const productToCart = useSelector(state => state.cart);
 
+    console.log(productToCart)
+
     return (
         <div>
             <div>
