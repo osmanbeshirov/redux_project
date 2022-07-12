@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { changeCategory, getCategories } from '../../redux/actions/categoryActions';
+import { getProducts } from '../../redux/actions/productActoins';
 import './categories.css'
 
 export default function CateogoryList() {
@@ -16,6 +17,7 @@ export default function CateogoryList() {
 
   const selectCategory = (category) => {
     dispatch(changeCategory(category));
+    dispatch(getProducts(category.id))
   }
 
   // console.log(categories)
