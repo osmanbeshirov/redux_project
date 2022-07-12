@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import { changeCategory, getCategories } from '../../redux/actions/categoryActions';
 
 export default function CateogoryList() {
@@ -7,26 +8,23 @@ export default function CateogoryList() {
 
   useEffect(() => {
     dispatch(getCategories())
-  })
-
-
+  }, [])
 
   const currentCategory = useSelector(state => state.changeCategory);
-  const categories = useSelector(state => state.categoryList.categories)
+  const categories = useSelector(state => state.categoryList);
 
-
-
-  console.log(currentCategory)
-  console.log(categories)
+  // console.log(categories)
 
   return (
     <div>
-     
-      {/* <ul key={}>{categories.map(categogry => {
-        <li>{categogry.categoryName}</li>
-      })}
+      <h3>Categories - {categories.length}</h3>
 
-      </ul> */}
+      <ListGroup>
+        {categories.map(category => (
+          <ListGroupItem key={category.id}>{category.categoryName}</ListGroupItem>
+        ))}
+      </ListGroup>
+
       <h4>Seçilən: {currentCategory.categoryName}</h4>
     </div>
   )
