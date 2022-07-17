@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/root/App';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'alertifyjs/build/css/alertify.min.css'
 
 import { Provider } from 'react-redux';
 import store from './redux/index'

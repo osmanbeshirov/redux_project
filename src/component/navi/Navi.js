@@ -33,7 +33,7 @@ export default function Navi() {
                         reactstrap
                     </NavbarBrand>
                     <NavbarToggler onClick={function noRefCheck() { }} />
-                    <Collapse navbar style={{ marginLeft: '50%' }}>
+                    <Collapse navbar style={{ marginLeft: '45%' }}>
                         <Nav
                             className="me-auto"
                             navbar

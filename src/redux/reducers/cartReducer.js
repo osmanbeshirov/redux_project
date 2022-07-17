@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import initialState from './initialState';
+import alertify from 'alertifyjs';
 
 const cartReducer = (state = initialState.cart, action) => {
     switch (action.type) {
@@ -18,6 +19,8 @@ const cartReducer = (state = initialState.cart, action) => {
             }
 
             else {
+                
+
                 return [...state, { ...action.payload, quantity: 1 }]
             }
 
