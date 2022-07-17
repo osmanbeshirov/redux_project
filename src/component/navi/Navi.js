@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
-    Navbar, NavbarBrand, NavbarToggler, Collapse, Nav,
+    Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, Badge,
     NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavLink
 } from 'reactstrap'
 
@@ -9,7 +9,17 @@ export default function Navi() {
 
     const productToCart = useSelector(state => state.cart);
 
-    console.log(productToCart)
+    console.log(productToCart);
+
+    let cartInfo = () => {
+        return (
+            <React.Fragment>
+                <span>-</span>
+                <Badge color="success" pill>{productToCart.length}</Badge>
+            </React.Fragment>
+
+        )
+    }
 
     return (
         <div>
@@ -47,12 +57,12 @@ export default function Navi() {
                                     caret
                                     nav
                                 >
-                                    Options
+                                    Basket {productToCart.length > 0 ? cartInfo() : null}
                                 </DropdownToggle>
                                 <DropdownMenu end>
                                     {productToCart.map(product => (
                                         <DropdownItem key={product.id}>
-                                            {product.productName}
+                                            {product.productName} <Badge className='warning' pill>{product.quantity}</Badge>
                                         </DropdownItem>
                                     ))}
                                     <DropdownItem divider />

@@ -7,7 +7,14 @@ const cartReducer = (state = initialState.cart, action) => {
             let addedProduct = state.find(product => product.id === action.payload.id);
 
             if (addedProduct) {
-                addedProduct.quantity += 1;
+                const newState = state.map(cartItem => {
+                    if (cartItem.id === action.payload.id) {
+                        return Object.assign({}, addedProduct, { quantity: addedProduct.quantity + 1 })
+                    }
+                    return cartItem;
+                })
+
+                return newState;
             }
 
             else {
