@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
+    Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink
 } from 'reactstrap'
 import { useSelector } from 'react-redux';
 
@@ -21,8 +21,8 @@ export default function CartSummary() {
         )
     }
 
-    return (
-        <div>
+    let basketFull = () => {
+        return (
             <UncontrolledDropdown
                 inNavbar
                 nav
@@ -31,12 +31,12 @@ export default function CartSummary() {
                     caret
                     nav
                 >
-                    Basket {productToCart.length > 0 ? cartInfo() : null}
+                   Basket {productToCart.length > 0 ? cartInfo() : cartEmpty()}
                 </DropdownToggle>
                 <DropdownMenu end>
                     {productToCart.map(product => (
                         <DropdownItem key={product.id}>
-                            {product.productName} <Badge className='warning' pill>{product.quantity}</Badge>
+                           {product.productName} <Badge className='warning' pill>{product.quantity}</Badge>
                         </DropdownItem>
                     ))}
                     <DropdownItem divider />
@@ -45,6 +45,22 @@ export default function CartSummary() {
                     </DropdownItem>
                 </DropdownMenu>
             </UncontrolledDropdown>
+        )
+    }
+
+    let cartEmpty = () => {
+        return (
+            <React.Fragment>
+                <NavItem>
+                    <NavLink>Basket is empty</NavLink>
+                </NavItem>
+            </React.Fragment>
+        )
+    }
+
+    return (
+        <div>
+            {productToCart.length > 0 ? basketFull(): cartEmpty()}
         </div>
     )
 }
