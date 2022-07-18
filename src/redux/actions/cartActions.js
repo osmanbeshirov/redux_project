@@ -14,8 +14,8 @@ export const addToCart = (product) => {
 }
 
 export const deleteFromCart = (product) => {
-
-
+    alertify.error(product.productName + '-' + 'Removed from basket');
+    
 
     return {
         type: actionTypes.DELETE_FROM_CART,
@@ -24,10 +24,9 @@ export const deleteFromCart = (product) => {
 }
 
 export const resetCart = () => {
-
-    alertify.error('All products are deleted from the Basket');
-
-    return {
+    
+    alertify.error('All products are deleted from the basket');
+    return{
         type: actionTypes.RESET_CART,
         payload: []
     }
