@@ -13,3 +13,25 @@ export const addToCart = (product) => {
     }
 }
 
+export const deleteFromCart = (product) => {
+
+
+
+    return {
+        type: actionTypes.DELETE_FROM_CART,
+        payload: product
+    }
+}
+
+export const resetCart = () => {
+
+    alertify.error('All products are deleted from the Basket');
+
+    return {
+        type: actionTypes.RESET_CART,
+        payload: []
+    }
+}
+
+
+

@@ -2,10 +2,13 @@ import React from 'react';
 import {
     Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink
 } from 'reactstrap'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteFromCart, resetCart } from '../../redux/actions/cartActions';
 
 
 export default function CartSummary() {
+
+    const dispatch = useDispatch();
 
     const productToCart = useSelector(state => state.cart);
 
@@ -31,17 +34,18 @@ export default function CartSummary() {
                     caret
                     nav
                 >
-                   Basket {productToCart.length > 0 ? cartInfo() : cartEmpty()}
+                    Basket {productToCart.length > 0 ? cartInfo() : cartEmpty()}
                 </DropdownToggle>
                 <DropdownMenu end>
                     {productToCart.map(product => (
                         <DropdownItem key={product.id}>
-                           {product.productName} <Badge className='warning' pill>{product.quantity}</Badge>
+                            <Badge onClick={() => dispatch(deleteFromCart(product))} color='danger' style={{ marginRight: '10px' }}>X</Badge>
+                            {product.productName} <Badge color='warning' pill>{product.quantity}</Badge>
                         </DropdownItem>
                     ))}
                     <DropdownItem divider />
-                    <DropdownItem>
-                        Reset
+                    <DropdownItem onClick={() => dispatch(resetCart())}>
+                        Remove all products
                     </DropdownItem>
                 </DropdownMenu>
             </UncontrolledDropdown>
@@ -60,7 +64,7 @@ export default function CartSummary() {
 
     return (
         <div>
-            {productToCart.length > 0 ? basketFull(): cartEmpty()}
+            {productToCart.length > 0 ? basketFull() : cartEmpty()}
         </div>
     )
 }
