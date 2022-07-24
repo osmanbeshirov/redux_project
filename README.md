@@ -1,6 +1,6 @@
 Deploy link is here:
 
-e-commerce-redux-ed0h8fqir-osmanbeshirov.vercel.app
+https://e-commerce-redux-eight.vercel.app/
 
 # Getting Started with Create React App
 
