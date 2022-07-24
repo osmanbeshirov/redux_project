@@ -4,14 +4,14 @@ import { Badge, Table, Button } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteFromCart } from '../../redux/actions/cartActions'
 
+import cartIsEmpty from '../../photos/cart_empty.png'
+
 export default function CartDetails() {
     const dispatch = useDispatch()
     const productsInCart = useSelector(state => state.cart)
 
-    return (
-        <div>
-            <h2>CartDetails</h2>
-
+    const renderDetails = () => {
+        return (
             <Table
                 hover
                 responsive
@@ -52,6 +52,23 @@ export default function CartDetails() {
 
                 </tbody>
             </Table>
+        )
+    }
+
+   const renderCartIsEmpty = () => {
+    return(
+        <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+            <img  style={{width: "550px", marginTop:'30px'}} src={cartIsEmpty}></img>
+            <h1>Your Cart is currently empty :(</h1>
+        </div>
+    )
+   }
+
+    return (
+        <div>
+            <h2>CartDetails</h2>
+
+            {productsInCart.length > 0? renderDetails(): renderCartIsEmpty()}
         </div>
     )
 }

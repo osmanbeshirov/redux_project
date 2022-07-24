@@ -6,6 +6,8 @@ import {
 } from 'reactstrap'
 import CartSummary from '../cart/CartSummary';
 
+import { Link } from 'react-router-dom'
+
 export default function Navi() {
 
 
@@ -17,8 +19,8 @@ export default function Navi() {
                     expand="md"
                     light
                 >
-                    <NavbarBrand href="/">
-                        reactstrap
+                    <NavbarBrand href="/" >
+                        <Link style={{ textDecoration: 'none', color: 'black' }} to='/' >Our District</Link>
                     </NavbarBrand>
                     <NavbarToggler onClick={function noRefCheck() { }} />
                     <Collapse navbar style={{ marginLeft: '45%' }}>
@@ -28,17 +30,18 @@ export default function Navi() {
                         >
 
                             <NavItem>
-                                <NavLink href="/components/">
-                                    Components
+                                <NavLink>
+                                    <Link style={{ textDecoration: 'none', color: 'black' }} to={'product'}>Main page</Link>
+
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">
+                                <NavLink style={{ textDecoration: 'none', color:'black' }} href="https://github.com/osmanbeshirov/redux_project">
                                     GitHub
                                 </NavLink>
                             </NavItem>
 
-                            <CartSummary/>
+                            <CartSummary />
 
                         </Nav>
                     </Collapse>
