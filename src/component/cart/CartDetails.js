@@ -8,7 +8,6 @@ export default function CartDetails() {
     const dispatch = useDispatch()
     const productsInCart = useSelector(state => state.cart)
 
-
     return (
         <div>
             <h2>CartDetails</h2>
@@ -40,7 +39,7 @@ export default function CartDetails() {
                                     {product.quantity}
                                 </td>
                                 <td>
-                                    {product.unitPrice}
+                                    {product.unitPrice} $$
                                 </td>
                                 <td> <Button onClick={() => dispatch(deleteFromCart(product))}
                                     color="danger"
@@ -48,10 +47,8 @@ export default function CartDetails() {
                                     Delete from the Basket
                                 </Button></td>
                             </tr>
-
                         ))
                     }
-
 
                 </tbody>
             </Table>

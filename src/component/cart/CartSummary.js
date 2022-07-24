@@ -5,6 +5,10 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteFromCart, resetCart } from '../../redux/actions/cartActions';
 
+import { Link } from 'react-router-dom'
+
+import basket from '../../photos/shopping-cart.png'
+
 
 export default function CartSummary() {
 
@@ -44,6 +48,11 @@ export default function CartSummary() {
                         </DropdownItem>
                     ))}
                     <DropdownItem divider />
+                    <DropdownItem >
+                        <Link style={{ textDecoration: 'none' }} to='cart'>  <img style={{ width: '30px', marginRight: '5px' }} src={basket}></img>
+
+                            <span style={{ color: 'black' }}> Go to the Basket</span> </Link>
+                    </DropdownItem>
                     <DropdownItem onClick={() => dispatch(resetCart())}>
                         Remove all products
                     </DropdownItem>
