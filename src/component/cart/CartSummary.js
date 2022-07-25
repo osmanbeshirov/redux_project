@@ -16,7 +16,7 @@ export default function CartSummary() {
 
     const productToCart = useSelector(state => state.cart);
 
-    console.log(productToCart);
+
 
     let cartInfo = () => {
         return (

@@ -36,7 +36,7 @@ export default function Navi() {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink style={{ textDecoration: 'none', color:'black' }} href="https://github.com/osmanbeshirov/redux_project">
+                                <NavLink style={{ textDecoration: 'none', color:'black' }} href="https://github.com/osmanbeshirov/redux_project" target={'blank'}>
                                     GitHub
                                 </NavLink>
                             </NavItem>

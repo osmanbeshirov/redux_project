@@ -1,14 +1,17 @@
 import React from 'react'
 import { Badge, Table, Button } from 'reactstrap'
 
+import '../css/CartDetails.css'
+
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteFromCart } from '../../redux/actions/cartActions'
+import { changeNumber, deleteFromCart, increaseNumber } from '../../redux/actions/cartActions'
 
 import cartIsEmpty from '../../photos/cart_empty.png'
 
 export default function CartDetails() {
     const dispatch = useDispatch()
     const productsInCart = useSelector(state => state.cart)
+
 
     const renderDetails = () => {
         return (
@@ -36,7 +39,12 @@ export default function CartDetails() {
                                     {product.productName}
                                 </td>
                                 <td>
-                                    {product.quantity}
+                                    <div className='number-area'>
+                                        <button className='btn-number decrease'>-</button>
+                                        <input className='inputNumber'  defaultValue={product.quantity} type={'number'}></input>
+                                        <button onClick={() => dispatch(increaseNumber(product))} className='btn-number increase'>+</button>
+                                    </div>
+
                                 </td>
                                 <td>
                                     {product.unitPrice} $$
@@ -55,20 +63,20 @@ export default function CartDetails() {
         )
     }
 
-   const renderCartIsEmpty = () => {
-    return(
-        <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-            <img  style={{width: "550px", marginTop:'30px'}} src={cartIsEmpty}></img>
-            <h1>Your Cart is currently empty :(</h1>
-        </div>
-    )
-   }
+    const renderCartIsEmpty = () => {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img style={{ width: "550px", marginTop: '30px' }} src={cartIsEmpty}></img>
+                <h1>Your Cart is currently empty :(</h1>
+            </div>
+        )
+    }
 
     return (
         <div>
             <h2>CartDetails</h2>
 
-            {productsInCart.length > 0? renderDetails(): renderCartIsEmpty()}
+            {productsInCart.length > 0 ? renderDetails() : renderCartIsEmpty()}
         </div>
     )
 }

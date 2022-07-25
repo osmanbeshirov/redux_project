@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import initialState from './initialState';
-import alertify from 'alertifyjs';
 
 const cartReducer = (state = initialState.cart, action) => {
     switch (action.type) {
@@ -23,12 +22,27 @@ const cartReducer = (state = initialState.cart, action) => {
                 return [...state, { ...action.payload, quantity: 1 }]
             }
         case actionTypes.DELETE_FROM_CART:
-            const updatedCart = state.filter(product => product.id != action.payload.id);
+            const updatedCart = state.filter(product => product.id !== action.payload.id);
 
             return updatedCart;
 
         case actionTypes.RESET_CART:
             return action.payload;
+
+        case actionTypes.INCREASE_NUMBER_OF_PRODUCT:
+
+            let increasedProduct = state.find(product => product.id === action.payload.id);
+
+            if (increasedProduct) {
+                const newState = state.map(cartItem => {
+                    if (cartItem.id === action.payload.id) {
+                        return Object.assign({}, increasedProduct, { quantity: increasedProduct.quantity + 1 })
+                    }
+                    return cartItem;
+                })
+
+                return newState;
+            }
 
         default:
             return state;
