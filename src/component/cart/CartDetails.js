@@ -14,6 +14,37 @@ export default function CartDetails() {
     const dispatch = useDispatch()
     const productsInCart = useSelector(state => state.cart)
 
+    const ProductList = () => {
+        return (
+            productsInCart.map((product) => (
+                <tr key={product.id}>
+                    <th scope="row">
+                        {product.id}
+                    </th>
+                    <td>
+                        {product.productName}
+                    </td>
+                    <td>
+                        <div className='number-area'>
+                            <button className='btn-number decrease'>-</button>
+                            <input className='inputNumber' defaultValue={product.quantity} type={'number'}></input>
+                            <button onClick={() => dispatch(increaseNumber(product))} className='btn-number increase'>+</button>
+                        </div>
+
+                    </td>
+                    <td>
+                        {product.unitPrice} $$
+                    </td>
+                    <td> <Button onClick={() => dispatch(deleteFromCart(product))}
+                        color="danger"
+                    >
+                        Delete from the Basket
+                    </Button></td>
+                </tr>
+            ))
+        )
+    }
+
     const renderDetails = () => {
         return (
             <Table
@@ -30,35 +61,7 @@ export default function CartDetails() {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        productsInCart.map((product) => (
-                            <tr key={product.id}>
-                                <th scope="row">
-                                    {product.id}
-                                </th>
-                                <td>
-                                    {product.productName}
-                                </td>
-                                <td>
-                                    <div className='number-area'>
-                                        <button className='btn-number decrease'>-</button>
-                                        <input className='inputNumber' defaultValue={product.quantity} type={'number'}></input>
-                                        <button onClick={() => dispatch(increaseNumber(product))} className='btn-number increase'>+</button>
-                                    </div>
-
-                                </td>
-                                <td>
-                                    {product.unitPrice} $$
-                                </td>
-                                <td> <Button onClick={() => dispatch(deleteFromCart(product))}
-                                    color="danger"
-                                >
-                                    Delete from the Basket
-                                </Button></td>
-                            </tr>
-                        ))
-                    }
-
+                    <ProductList />
                 </tbody>
             </Table>
         )
