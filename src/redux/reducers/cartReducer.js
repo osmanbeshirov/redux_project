@@ -31,18 +31,19 @@ const cartReducer = (state = initialState.cart, action) => {
 
         case actionTypes.INCREASE_NUMBER_OF_PRODUCT:
 
-            let increasedProduct = state.find(product => product.id === action.payload.id);
 
-            if (increasedProduct) {
-                const newState = state.map(cartItem => {
-                    if (cartItem.id === action.payload.id) {
-                        return Object.assign({}, increasedProduct, { quantity: increasedProduct.quantity + 1 })
-                    }
-                    return cartItem;
-                })
 
-                return newState;
-            }
+            const newState = state.map(cartItem => {
+                if (cartItem.id === action.payload.id) {
+                    return Object.assign({}, action.payload,
+                        { quantity: action.payload.quantity + 1, unitPrice: action.payload.unitPrice * 2 })
+                }
+                return cartItem;
+            })
+
+            console.log(newState)
+
+            return newState;
 
         default:
             return state;
