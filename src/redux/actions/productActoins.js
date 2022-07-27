@@ -14,7 +14,7 @@ export const getProducts = (categoryId, allDb) => {
         // if (categoryId) {
         //     url = url + "?categoryId=" + categoryId;
 
-        console.log(allDb)
+
 
         if (categoryId) {
             return fetch('db.json').then(res => res.json())
