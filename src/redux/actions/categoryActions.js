@@ -14,9 +14,9 @@ export const getCategoriesSuccess = (categories) => ({
 export const getCategories = () => {
 
     return function (dispatch) {
-        let url = 'http://localhost:3000/categories';
+        let url = 'db.json';
         return fetch(url).then(res => res.json())
-            .then(data => dispatch(getCategoriesSuccess(data)))
+            .then(data => dispatch(getCategoriesSuccess(data.categories)))
     }
 
 }

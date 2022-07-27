@@ -15,9 +15,11 @@ export default function CateogoryList() {
   const currentCategory = useSelector(state => state.changeCategory);
   const categories = useSelector(state => state.categoryList);
 
+  const allDb = useSelector(state => state.products)
+
   const selectCategory = (category) => {
     dispatch(changeCategory(category));
-    dispatch(getProducts(category.id))
+    dispatch(getProducts(category.id, allDb))
   }
 
   // console.log(categories)
