@@ -10,7 +10,9 @@ const cartReducer = (state = initialState.cart, action) => {
             if (addedProduct) {
                 const newState = state.map(cartItem => {
                     if (cartItem.id === action.payload.id) {
-                        return Object.assign({}, addedProduct, { quantity: addedProduct.quantity + 1 })
+                        let addedHelp = Object.assign({}, addedProduct, { quantity: addedProduct.quantity + 1 })
+
+                        return Object.assign({}, addedHelp, { totalPrice: addedHelp.unitPrice * addedHelp.quantity })
                     }
                     return cartItem;
                 })
@@ -19,9 +21,9 @@ const cartReducer = (state = initialState.cart, action) => {
             }
 
             else {
-
-                return [...state, { ...action.payload, quantity: 1 }]
+                return [...state, { ...action.payload, quantity: 1, totalPrice: action.payload.unitPrice }];
             }
+
         case actionTypes.DELETE_FROM_CART:
 
             const updatedCart = state.filter(product => product.id !== action.payload.id);
@@ -34,11 +36,13 @@ const cartReducer = (state = initialState.cart, action) => {
         case actionTypes.INCREASE_NUMBER_OF_PRODUCT:
             const newIncreasedState = state.map(cartItem => {
                 if (cartItem.id === action.payload.id) {
-                    return Object.assign({}, action.payload,
-                        { quantity: action.payload.quantity + 1, unitPrice: action.payload.unitPrice * 2 })
+                    let increaseHelp = Object.assign({}, action.payload, { quantity: action.payload.quantity + 1 })
+
+                    return Object.assign({}, increaseHelp, { totalPrice: increaseHelp.totalPrice + Number(increaseHelp.unitPrice) })
                 }
                 return cartItem;
             })
+
             return newIncreasedState;
 
         case actionTypes.DECREASE_NUMBER_OF_PRODUCT:
@@ -46,9 +50,10 @@ const cartReducer = (state = initialState.cart, action) => {
             const newDecreasedState = state.map(cartItem => {
 
                 if (cartItem.id === action.payload.id && cartItem.quantity > 0) {
-                    const objectifiaedProduct = Object.assign({}, action.payload,
-                        { quantity: action.payload.quantity - 1, unitPrice: action.payload.unitPrice / 2 })
-                    return objectifiaedProduct;
+                    const objectifiaedProduct = Object.assign({}, action.payload, { quantity: action.payload.quantity - 1 })
+
+                    return Object.assign({}, objectifiaedProduct, { totalPrice: objectifiaedProduct.totalPrice - objectifiaedProduct.unitPrice })
+
                 }
                 return cartItem;
             })
@@ -62,6 +67,7 @@ const cartReducer = (state = initialState.cart, action) => {
             }
 
             else {
+
                 return newDecreasedState;
             }
 
@@ -69,7 +75,15 @@ const cartReducer = (state = initialState.cart, action) => {
 
             const { myProduct, myNumber } = action.payload;
 
+            const newChangedState = state.map(cartItem => {
+                if (cartItem.id === myProduct.id) {
+                    let changedHelp = Object.assign({}, myProduct, { quantity: Number(myNumber) })
+                    return Object.assign({}, changedHelp, { totalPrice: changedHelp.quantity * changedHelp.unitPrice })
+                }
+                return cartItem;
+            })
 
+            return newChangedState
 
         default:
             return state;

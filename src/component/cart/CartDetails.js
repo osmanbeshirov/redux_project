@@ -33,7 +33,7 @@ export default function CartDetails() {
 
                     </td>
                     <td>
-                        {product.unitPrice} $$
+                        {product.totalPrice} $$
                     </td>
                     <td> <Button onClick={() => dispatch(deleteFromCart(product))}
                         color="danger"
