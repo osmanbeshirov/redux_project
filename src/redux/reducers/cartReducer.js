@@ -65,6 +65,12 @@ const cartReducer = (state = initialState.cart, action) => {
                 return newDecreasedState;
             }
 
+        case actionTypes.IS_CHANGE_NUMBER_OF_PRODUCT:
+
+            const { myProduct, myNumber } = action.payload;
+
+
+
         default:
             return state;
     }

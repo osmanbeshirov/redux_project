@@ -14,8 +14,6 @@ export const getProducts = (categoryId, allDb) => {
         // if (categoryId) {
         //     url = url + "?categoryId=" + categoryId;
 
-
-
         if (categoryId) {
             return fetch('db.json').then(res => res.json())
                 .then(data => dispatch(getProductsSuccess(data.products.filter(pro => pro.categoryId === categoryId))))

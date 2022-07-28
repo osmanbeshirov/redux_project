@@ -47,6 +47,19 @@ export const decreaseNumber = (product) => {
     }
 }
 
+export const changeNumber = (num, product) => {
+
+    const actionArr = {
+        myNumber: num,
+        myProduct: product
+    }
+
+    return {
+        type: actionTypes.IS_CHANGE_NUMBER_OF_PRODUCT,
+        payload: actionArr
+    }
+}
+
 
 
 
