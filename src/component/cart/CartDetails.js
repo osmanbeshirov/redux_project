@@ -69,8 +69,8 @@ export default function CartDetails() {
 
     const renderCartIsEmpty = () => {
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img style={{ width: "550px", marginTop: '30px' }} src={cartIsEmpty}></img>
+            <div className='emptyCart'>
+                <img src={cartIsEmpty}></img>
                 <h1>Your Cart is currently empty :(</h1>
             </div>
         )

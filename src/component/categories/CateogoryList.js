@@ -25,7 +25,7 @@ export default function CateogoryList() {
   // console.log(categories)
   // console.log(currentCategory);
   return (
-    <div>
+    <div className='parentCategories'>
       <h3>Categories</h3>
 
       <ListGroup>

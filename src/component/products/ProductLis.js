@@ -5,6 +5,8 @@ import { addToCart } from '../../redux/actions/cartActions';
 import { changeCategory } from '../../redux/actions/categoryActions';
 import { getProducts } from '../../redux/actions/productActoins';
 
+import './productList.css'
+
 export default function ProductLis() {
 
     const currentCategory = useSelector(state => state.changeCategory);
@@ -30,7 +32,7 @@ export default function ProductLis() {
     }
 
     return (
-        <div>
+        <div className='productList'>
             <h3>ProductList
                 {currentCategory.id > 0 ? text() : null}
             </h3>

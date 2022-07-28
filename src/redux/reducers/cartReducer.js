@@ -38,7 +38,7 @@ const cartReducer = (state = initialState.cart, action) => {
                 if (cartItem.id === action.payload.id) {
                     let increaseHelp = Object.assign({}, action.payload, { quantity: action.payload.quantity + 1 })
 
-                    return Object.assign({}, increaseHelp, { totalPrice: increaseHelp.totalPrice + Number(increaseHelp.unitPrice) })
+                    return Object.assign({}, increaseHelp, { totalPrice: Number(increaseHelp.totalPrice) + Number(increaseHelp.unitPrice) })
                 }
                 return cartItem;
             })
