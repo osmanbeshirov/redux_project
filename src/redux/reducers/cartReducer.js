@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import initialState from './initialState';
+import alertify from 'alertifyjs';
 
 const cartReducer = (state = initialState.cart, action) => {
     switch (action.type) {
@@ -22,6 +23,7 @@ const cartReducer = (state = initialState.cart, action) => {
                 return [...state, { ...action.payload, quantity: 1 }]
             }
         case actionTypes.DELETE_FROM_CART:
+
             const updatedCart = state.filter(product => product.id !== action.payload.id);
 
             return updatedCart;
@@ -30,20 +32,38 @@ const cartReducer = (state = initialState.cart, action) => {
             return action.payload;
 
         case actionTypes.INCREASE_NUMBER_OF_PRODUCT:
-
-
-
-            const newState = state.map(cartItem => {
+            const newIncreasedState = state.map(cartItem => {
                 if (cartItem.id === action.payload.id) {
                     return Object.assign({}, action.payload,
                         { quantity: action.payload.quantity + 1, unitPrice: action.payload.unitPrice * 2 })
                 }
                 return cartItem;
             })
+            return newIncreasedState;
 
-            console.log(newState)
+        case actionTypes.DECREASE_NUMBER_OF_PRODUCT:
 
-            return newState;
+            const newDecreasedState = state.map(cartItem => {
+
+                if (cartItem.id === action.payload.id && cartItem.quantity > 0) {
+                    const objectifiaedProduct = Object.assign({}, action.payload,
+                        { quantity: action.payload.quantity - 1, unitPrice: action.payload.unitPrice / 2 })
+                    return objectifiaedProduct;
+                }
+                return cartItem;
+            })
+
+            if (action.payload.quantity === 1) {
+                const updatedCart2 = newDecreasedState.filter(product => product.id !== action.payload.id);
+
+                alertify.error(action.payload.productName + '-' + 'Removed from basket');
+
+                return updatedCart2;
+            }
+
+            else {
+                return newDecreasedState;
+            }
 
         default:
             return state;

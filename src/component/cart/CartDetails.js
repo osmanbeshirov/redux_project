@@ -4,7 +4,7 @@ import { Badge, Table, Button } from 'reactstrap'
 import '../css/CartDetails.css'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteFromCart, increaseNumber } from '../../redux/actions/cartActions'
+import { deleteFromCart, increaseNumber, decreaseNumber } from '../../redux/actions/cartActions'
 
 import cartIsEmpty from '../../photos/cart_empty.png'
 
@@ -26,7 +26,7 @@ export default function CartDetails() {
                     </td>
                     <td>
                         <div className='number-area'>
-                            <button className='btn-number decrease'>-</button>
+                            <button onClick={() => dispatch(decreaseNumber(product))} className='btn-number decrease'>-</button>
                             <input className='inputNumber' defaultValue={product.quantity} type={'number'}></input>
                             <button onClick={() => dispatch(increaseNumber(product))} className='btn-number increase'>+</button>
                         </div>

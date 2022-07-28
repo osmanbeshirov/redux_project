@@ -16,7 +16,6 @@ export const addToCart = (product) => {
 export const deleteFromCart = (product) => {
     alertify.error(product.productName + '-' + 'Removed from basket');
 
-
     return {
         type: actionTypes.DELETE_FROM_CART,
         payload: product
@@ -33,12 +32,21 @@ export const resetCart = () => {
 }
 
 export const increaseNumber = (product) => {
-    
+
     return {
         type: actionTypes.INCREASE_NUMBER_OF_PRODUCT,
         payload: product
     }
 }
+
+
+export const decreaseNumber = (product) => {
+    return {
+        type: actionTypes.DECREASE_NUMBER_OF_PRODUCT,
+        payload: product
+    }
+}
+
 
 
 
