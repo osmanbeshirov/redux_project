@@ -4,6 +4,16 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.confirm-btn {
+    background: linear-gradient(90deg, #ff640e, #ff3000);
+    border: none;
+    width: 100%;
+}
+
+.confirm-btn:hover{
+    opacity: 0.8;
+}
+
 .number-area {
     width: 122px;
     border: 1px solid rgb(164, 160, 160);

@@ -4,14 +4,3 @@
     border-radius: 15px;
 }
 
-.left{
-    width: 20%;
-}
-
-.right{
-    right: 80%;
-}
-
-@media screen and (max-width: 700px) {
-    
-}

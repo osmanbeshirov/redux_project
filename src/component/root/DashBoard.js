@@ -9,10 +9,10 @@ export default function DashBoard() {
     return (
         <div>
             <Row>
-                <Col className='left' >
+                <Col xs="3" >
                     <CateogoryList />
                 </Col>
-                <Col className='right' > 
+                <Col xs="9">
                     <ProductLis />
                 </Col>
             </Row>

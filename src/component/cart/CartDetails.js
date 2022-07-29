@@ -1,5 +1,8 @@
 import React from 'react'
-import { Badge, Table, Button } from 'reactstrap'
+import {
+    Badge, Table, Button, Row, Col, Card, CardHeader,
+    CardBody, CardTitle, CardText
+} from 'reactstrap'
 
 import '../css/CartDetails.css'
 
@@ -47,23 +50,53 @@ export default function CartDetails() {
 
     const renderDetails = () => {
         return (
-            <Table
-                hover
-                responsive
-            >
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ProductList />
-                </tbody>
-            </Table>
+            <Row>
+                <Col xs='9' className='cart-detail'>
+                    <Table
+                        hover
+                        responsive
+                    >
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ProductList />
+                        </tbody>
+                    </Table>
+                </Col>
+                <Col xs='3'>
+                    <Card
+                        className="my-2"
+                        style={{
+                            width: '18rem'
+                        }}
+                    >
+                        <CardHeader style={{ textAlign: 'center', fontWeight: '600' }}>
+                            Your Cart
+                        </CardHeader>
+                        <CardBody>
+                            <CardTitle tag="h3" style={{ marginBottom: '25px' }}>
+                                Cart Summary
+                            </CardTitle>
+                            <CardText style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <span style={{ fontSize: '18px' }}>The overall total:</span>
+                                <span style={{ fontSize: '18px', fontWeight: '500' }}> 23$$ </span>
+                            </CardText>
+                            <Button className='confirm-btn'>
+                                Confirm and Buy (3)
+                            </Button>
+                        </CardBody>
+                    </Card>
+                </Col>
+
+            </Row>
+
         )
     }
 

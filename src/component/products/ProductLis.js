@@ -20,8 +20,6 @@ export default function ProductLis() {
     }, [])
 
 
-    // console.log(allProducts)
-
     let text = () => {
         return (
             <React.Fragment>
@@ -70,7 +68,7 @@ export default function ProductLis() {
                                 <td>
                                     {product.unitsInStock}
                                 </td>
-                                <td> <Button onClick={() => dispatch(addToCart(product))}
+                                <td className='btn-td'> <Button onClick={() => dispatch(addToCart(product))}
                                     color="primary"
                                 >
                                     Add to Basket
